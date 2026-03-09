@@ -10,32 +10,37 @@ sources:
         identifier: raw_gz_sales
         description: "Müşterilerin günlük ve ürün bazlı ham satış verilerini içeren tablo."
         columns:
-          - name: date_date
-            description: "Satış işleminin gerçekleştiği tarih."
+          - name: sales_id
+            description: "Her bir sipariş kaleminin benzersiz kimlik numarası (orders_id ve pdt_id birleşimi)."
+            tests:
+              - unique
+              - not_null
           - name: orders_id
-            description: "Siparişin benzersiz kimlik numarası."
+            description: "Siparişin kimlik numarası. (Tek başına benzersiz değildir)."
           - name: pdt_id
-            description: "Satılan ürünün benzersiz kimlik numarası."
-          - name: revenue
-            description: "İlgili satıştan elde edilen tutar."
-          - name: quantity
-            description: "Satılan ürün adedi."
+            description: "Satılan ürünün kimlik numarası."
 
       - name: product
         identifier: raw_gz_product
         description: "Ürünlerin ham katalog ve maliyet verilerini içeren tablo."
         columns:
           - name: products_id
-            description: "Ürünün benzersiz kimlik numarası."
+            description: "Ürünün benzersiz kimlik numarası. (Primary Key)"
+            tests:
+              - unique
+              - not_null
           - name: purchse_price
-            description: "Ürünün satın alma maliyeti (ham verideki orijinal yazımıyla)."
+            description: "Ürünün satın alma maliyeti."
 
       - name: ship
         identifier: raw_gz_ship
         description: "Siparişlerin kargo, lojistik ve maliyet bilgilerini içeren ham veri tablosu."
         columns:
           - name: orders_id
-            description: "Kargoya verilen siparişin benzersiz kimlik numarası."
+            description: "Kargoya verilen siparişin benzersiz kimlik numarası. (Primary Key)"
+            tests:
+              - unique
+              - not_null
           - name: shipping_fee
             description: "Müşteriden tahsil edilen kargo ücreti."
           - name: logcost
