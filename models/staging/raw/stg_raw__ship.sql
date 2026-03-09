@@ -11,9 +11,9 @@ renamed as (
     select
         orders_id,
         shipping_fee,
-        shipping_fee_1,
+        -- shipping_fee_1 birebir aynı olduğu için çıkarıldı
         logcost,
-        ship_cost
+        TRUNC(CAST(ship_cost AS FLOAT64), 5) AS ship_cost
 
     from source
 
