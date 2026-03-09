@@ -10,16 +10,23 @@ sources:
         identifier: raw_gz_sales
         description: "Müşterilerin günlük ve ürün bazlı ham satış verilerini içeren tablo."
         columns:
-          - name: sales_id
-            description: "Her bir sipariş kaleminin benzersiz kimlik numarası (orders_id ve pdt_id birleşimi)."
-            tests:
-              - unique
-              - not_null
+          - name: date_date
           - name: orders_id
             description: "Siparişin kimlik numarası. (Tek başına benzersiz değildir)."
+            tests:
+              - not_null
           - name: pdt_id
             description: "Satılan ürünün kimlik numarası."
+            tests:
+              - not_null
+          - name: revenue
+          - name: quantity
+        
+        tests:
+          - unique:
+              column_name: "(CAST(orders_id AS STRING) || '-' || CAST(pdt_id AS STRING))"
 
+      # product tablosu sales ile aynı hizada yeniden başlıyor
       - name: product
         identifier: raw_gz_product
         description: "Ürünlerin ham katalog ve maliyet verilerini içeren tablo."
@@ -32,6 +39,7 @@ sources:
           - name: purchse_price
             description: "Ürünün satın alma maliyeti."
 
+      # ship tablosu da aynı hizada
       - name: ship
         identifier: raw_gz_ship
         description: "Siparişlerin kargo, lojistik ve maliyet bilgilerini içeren ham veri tablosu."
