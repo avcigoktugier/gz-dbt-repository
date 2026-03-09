@@ -1,0 +1,3 @@
+select* 
+from silken-water-483716-b8.gwz_raw_data.raw_gz_sales 
+where quantity = 2
