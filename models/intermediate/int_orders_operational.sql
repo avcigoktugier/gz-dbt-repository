@@ -13,13 +13,13 @@ orders_operational AS (
         om.margin,
         sh.shipping_fee, 
         sh.logcost,
-        sh.ship_cost
+        sh.ship_cost,
         
 
-        (sm.margin + sh.shipping_fee - sh.logcost - sh.ship_cost) AS operational_marg,
+        (om.margin + sh.shipping_fee - sh.logcost - sh.ship_cost) AS operational_margin
 
 
-    FROM orders_operational AS om -- Yukarıdaki CTE ismini kullandık
+    FROM orders_margin AS om -- Yukarıdaki CTE ismini kullandık
     LEFT JOIN ship AS sh 
         ON om.orders_id = sh.orders_id -- om ile sh'ı bağladık
 )
