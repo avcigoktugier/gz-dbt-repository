@@ -23,7 +23,7 @@ orders_with_costs AS (
         
         
 
-    FROM int_sales_margin sm --int_sales_margin AS sm
+    FROM {{ ref('int_sales_margin') }} AS sm --int_sales_margin AS sm
 
 )
 
