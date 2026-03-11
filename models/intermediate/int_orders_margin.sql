@@ -2,10 +2,7 @@
    dbt'de 'ref' fonksiyonu kullanarak staging tablolarımızı içeri alıyoruz.
 */
 
- WITH ship AS (
-    SELECT * FROM {{ ref('stg_raw__ship') }}
-),
-sales_margin AS (
+WITH sales_margin AS (
     SELECT * FROM {{ ref('int_sales_margin') }}
 ),
 
