@@ -23,7 +23,7 @@ sales_with_costs AS (
         -- Marj (Kâr) Hesabı: Toplam Gelir - Toplam Satın Alma Maliyeti
         (s.revenue - (s.quantity * p.purchase_price)) AS margin
 
-    FROM sales s
+    FROM sales s --sales AS s
     LEFT JOIN product p 
         -- Belirttiğin 'products_id' kolonuna göre eşleştirme yapıyoruz
         ON s.products_id = p.products_id
